@@ -1,15 +1,15 @@
 version: "3.5"
 networks:
-    flask-api-network:
-        name: flask-api-network
+    heimdall-api-dev-network:
+        name: heimdall-api-dev-network
 services:
-    db-mysql:
-        container_name: flask-api-db
+    db-mysql-dev:
+        container_name: heimdall-api-dev-db
         image: mysql:latest
         command: --init-file /usr/src/app/init.sql
         volumes:
             - ./mysql/init.sql:/usr/src/app/init.sql
-            - ./volumes/test_db:/var/lib/mysql
+            - ./volumes/db:/var/lib/mysql
         expose:
             - "3306"
         restart: always
@@ -19,18 +19,18 @@ services:
             MYSQL_USER: <USER>
             MYSQL_PASSWORD: <PASSWORD>
         networks:
-            - flask-api-network
+            - heimdall-api-dev-network
 
-    flask-api:
-        container_name: flask-api
+    heimdall-api-dev:
+        container_name: heimdall-api-dev
         build:
             context: ./api
             dockerfile: Dockerfile.dev
-        image: treed1104/flask-api-dev:latest
+        image: treed1104/heimdall-api-dev:latest
         restart: always
         links:
             - db-mysql
-        ports:
+        expose:
             - "5000:5000"
         networks:
-            - flask-api-network
+            - heimdall-api-dev-network
