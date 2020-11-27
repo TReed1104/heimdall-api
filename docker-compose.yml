@@ -26,10 +26,10 @@ services:
             - "3306"
         restart: always
         environment:
-            MYSQL_ROOT_PASSWORD: pL3m6VursT7BEmn
-            MYSQL_DATABASE: db_heimdall_api
-            MYSQL_USER: root
-            MYSQL_PASSWORD: pL3m6VursT7BEmn
+            MYSQL_ROOT_PASSWORD: <PASSWORD>
+            MYSQL_DATABASE: <DATABASE_NAME>
+            MYSQL_USER: <USER>
+            MYSQL_PASSWORD: <PASSWORD>
         networks:
             - heimdall-api-network
 
