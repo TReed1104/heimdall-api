@@ -11,7 +11,8 @@ RUN apt-get clean && \
 
 ## Install our dependencies
 RUN apt-get install python3-pip -y && \
-    apt-get install libmysqlclient-dev -y
+    apt-get install libmysqlclient-dev -y && \
+    apt-get install libssl-dev -y
 
 ## Change Working Directory
 WORKDIR /usr/src/app
@@ -33,4 +34,4 @@ RUN chmod +x ./boot.sh
 EXPOSE 5000
 
 ## Run out boot script
-ENTRYPOINT ["./boot.sh"]
+ENTRYPOINT ["sh", "./boot.sh"]
