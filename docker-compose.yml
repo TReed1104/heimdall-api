@@ -1,0 +1,48 @@
+version: "3.5"
+networks:
+    flask-api-network:
+        name: flask-api-network
+services:
+    nginx:
+        container_name: flask-api-nginx
+        image: nginx:latest
+        restart: always
+        volumes:
+            - ./nginx/nginx.conf:/etc/nginx/nginx.conf
+        ports:
+            - 80:80
+            - 443:443
+        networks:
+            - flask-api-network
+
+    db-mysql:
+        container_name: flask-api-db
+        image: mysql:latest
+        command: --init-file /usr/src/app/init.sql
+        volumes:
+            - ./mysql/init.sql:/usr/src/app/init.sql
+            - ./volumes/db:/var/lib/mysql
+        expose:
+            - "3306"
+        restart: always
+        environment:
+            MYSQL_ROOT_PASSWORD: <PASSWORD>
+            MYSQL_DATABASE: <DATABASE_NAME>
+            MYSQL_USER: <USER>
+            MYSQL_PASSWORD: <PASSWORD>
+        networks:
+            - flask-api-network
+
+    flask-api:
+        container_name: flask-api
+        build:
+            context: ./api
+            dockerfile: Dockerfile
+        image: treed1104/flask-api:latest
+        restart: always
+        links:
+            - db-mysql
+        expose:
+            - "5000"
+        networks:
+            - flask-api-network
