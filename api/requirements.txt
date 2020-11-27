@@ -7,5 +7,4 @@ mysqlclient==1.4.6
 webargs==5.3.2
 gunicorn==19.9.0
 marshmallow==3.0.1
-requests==2.22.0
 nose2==0.9.1

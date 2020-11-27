@@ -3,7 +3,7 @@ import unittest
 from shared import db
 from main import app
 
-class FeatureTest_Template(unittest.TestCase):
+class UnitTest_Computer(unittest.TestCase):
     ## Setup Functions
     def setUp(self):
         app.config.from_pyfile('configs/testing.cfg')
