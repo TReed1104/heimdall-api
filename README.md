@@ -1,4 +1,4 @@
-# Heimdall, The Watcher
+# Heimdall
 ## What is Heimdall?
 Heimdall is a remote monitoring application used for monitoring the School of Computer Science's computing labs at The University of Lincoln. Heimdall's back-end is written in Python (version 3), using the Flask web microframework and its RESTful extension.
 
